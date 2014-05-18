@@ -1,5 +1,6 @@
 # QuickReaderView
 
+![UITableView](http://i.imgur.com/gfaAlY7.gif)
 ## Usage
 
 ### Defining your layout
