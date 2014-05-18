@@ -6,7 +6,8 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 public class QuickReaderView extends TextView {
-    private long delay = 500; // in ms
+    private static final long MINUTE = 60000;
+    private long delay = 1000; // 60 words per second by default
 
     public QuickReaderView(Context context) {
         super(context);
@@ -20,8 +21,9 @@ public class QuickReaderView extends TextView {
         super(context, attrs, defStyle);
     }
 
-    public QuickReaderView setDelay(long delay) {
-        this.delay = delay;
+    // in words per second
+    public QuickReaderView setDelay(long wordsPerSecond) {
+        this.delay = MINUTE / wordsPerSecond;
         return this;
     }
 
@@ -31,7 +33,6 @@ public class QuickReaderView extends TextView {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                sleep(500);
                 for(final String word : words) {
                     activity.runOnUiThread(new Runnable() {
                         @Override
