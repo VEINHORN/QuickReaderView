@@ -23,7 +23,7 @@ public class QuickReaderView extends TextView {
     }
 
     // in words per second
-    public QuickReaderView setDelay(long wordsPerSecond) {
+    public QuickReaderView setWordsPerSecond(long wordsPerSecond) {
         this.delay = MINUTE / wordsPerSecond;
         return this;
     }
@@ -58,6 +58,11 @@ public class QuickReaderView extends TextView {
         }
     }
 
+    /**
+     * Enables repeat option
+     * @param repeatFlag
+     * @return
+     */
     public QuickReaderView setRepeat(boolean repeatFlag) {
         this.repeatFlag = repeatFlag;
         return this;
