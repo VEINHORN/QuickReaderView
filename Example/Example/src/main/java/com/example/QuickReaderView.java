@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 public class QuickReaderView extends TextView {
+    private boolean repeatFlag = false;
     private static final long MINUTE = 60000;
     private long delay = 1000; // 60 words per second by default
 
@@ -33,15 +34,18 @@ public class QuickReaderView extends TextView {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for(final String word : words) {
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            setText(word);
-                        }
-                    });
-                    sleep(delay);
+                while(repeatFlag) {
+                    for(final String word : words) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                setText(word);
+                            }
+                        });
+                        sleep(delay);
+                    }
                 }
+
             }
         }).start();
     }
@@ -52,5 +56,10 @@ public class QuickReaderView extends TextView {
         } catch(InterruptedException e) {
 
         }
+    }
+
+    public QuickReaderView setRepeat(boolean repeatFlag) {
+        this.repeatFlag = repeatFlag;
+        return this;
     }
 }
