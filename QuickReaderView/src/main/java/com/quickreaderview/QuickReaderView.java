@@ -3,6 +3,7 @@ package com.quickreaderview;
 import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.TextView;
 
 public class QuickReaderView extends TextView {
@@ -54,7 +55,7 @@ public class QuickReaderView extends TextView {
         try {
             Thread.sleep(time);
         } catch(InterruptedException e) {
-
+            Log.e(this.getClass().getName(), "Cannot set sleep", e);
         }
     }
 
